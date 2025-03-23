@@ -1,8 +1,8 @@
-import BlogSection from "@/components/blocks/blog-section";
-import FeaturesSection from "@/components/blocks/features-section";
-import FooterBlock from "@/components/blocks/footer-block";
-import HeroSection from "@/components/blocks/hero-section";
-import MetricsSection from "@/components/blocks/metrics-section";
+import BlogSection from "@/components/home/blog-section";
+import FeaturesSection from "@/components/home/features-section";
+import FooterBlock from "@/components/home/footer-block";
+import HeroSection from "@/components/home/hero-section";
+import MetricsSection from "@/components/home/metrics-section";
 
 export default function Home() {
   return (

@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Mail } from "lucide-react";
 
 const Navbar = () => {
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -60,7 +59,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href="/dashboard"
+                  href="#"
                   className="duration-300 font-medium ease-linear hover:text-blue-600 py-3"
                 >
                   Services
@@ -83,14 +82,6 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <div className="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-gray-100 dark:border-gray-900  lg:border-0 px-6 lg:px-0">
-              <Link
-                href="#"
-                className="flex justify-center items-center w-full sm:w-max px-6 h-12 rounded-full outline-none relative overflow-hidden border duration-300 ease-linear after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0 after:bg-[#172554] hover:after:opacity-100 hover:after:scale-[2.5] bg-blue-600 border-transparent hover:border-[#172554]"
-              >
-                <span className="relative z-10 text-white">Get Started</span>
-              </Link>
-            </div>
           </div>
           <div className="min-w-max flex items-center gap-x-3">
             <button className="outline-none flex relative text-gray-700 dark:text-gray-300 rounded-full p-2 lg:p-3 border border-gray-100 dark:border-gray-900 ">
@@ -188,48 +179,16 @@ export default function HeroSection() {
               libero sequi quos eos velit
             </p>
             <div className="mt-10  w-full flex max-w-md mx-auto lg:mx-0">
-              <div className="flex sm:flex-row flex-col gap-5 w-full">
-                <form
-                  action="#"
-                  className="py-1 pl-6 w-full pr-1 flex gap-3 items-center text-gray-600 dark:text-gray-400 shadow-lg shadow-gray-200/20 dark:shadow-transparent
-                      border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 rounded-full ease-linear focus-within:bg-white dark:focus-within:bg-gray-950  focus-within:border-blue-600"
-                >
-                  <span className="min-w-max pr-2 border-r border-gray-200 dark:border-gray-800">
-                    <Mail className="w-5 h-5 text-current" />
-                  </span>
-                  <input
-                    type="email"
-                    name=""
-                    id=""
-                    placeholder="johndoe@gmail.com"
-                    className="w-full py-3 outline-none bg-transparent"
-                  />
-                  <button
-                    className="flex text-white justify-center items-center w-max min-w-max sm:w-max px-6 h-12 rounded-full outline-none relative overflow-hidden border duration-300 ease-linear
-                          after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0 after:bg-[#172554] hover:after:opacity-100 hover:after:scale-[2.5] bg-blue-600 border-transparent hover:border-[#172554]"
+            <div className="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-gray-100 dark:border-gray-900  lg:border-0 px-6 lg:px-0">
+                  <Link
+                    href="/sign-in"
+                    className="flex justify-center items-center w-full sm:w-max md:w-max px-6 h-12 rounded-full outline-none relative overflow-hidden border duration-300 ease-linear after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0 after:bg-[#172554] hover:after:opacity-100 hover:after:scale-[2.5] bg-blue-600 border-transparent hover:border-[#172554]"
                   >
-                    <span className="hidden sm:flex relative z-[5]">
+                    <span className="relative z-10 text-white">
                       Get Started
                     </span>
-                    <span className="flex sm:hidden relative z-[5]">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </form>
-              </div>
+                  </Link>
+                </div>
             </div>
           </div>
           <div className="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
@@ -238,6 +197,7 @@ export default function HeroSection() {
               alt="Hero image"
               width={2350}
               height={2359}
+              priority={true}
               className="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96"
             />
           </div>
