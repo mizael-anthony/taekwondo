@@ -3,43 +3,59 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
 import { Button } from "../ui/button"
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
+
+export type Fighter = {
+  name: string
+  age: number
+  weight: number
+  sex: "male" | "female"
+  technical_category: string
+  fight_category: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Fighter>[] = [
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: "Name",
   },
   {
-    accessorKey: "email",
+    accessorKey: "age",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Age
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
- 
-      return <div className="text-right font-medium">{formatted}</div>
+    accessorKey: "weight",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Weight
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
     },
-  }
+  },
+  {
+    accessorKey: "sex",
+    header: "Sex",
+  },
+  {
+    accessorKey: "technical_category",
+    header: "Technical Category",
+  },
+  {
+    accessorKey: "fight_category",
+    header: "Fight Category",
+  },
 ]
