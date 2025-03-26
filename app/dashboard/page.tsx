@@ -1,47 +1,54 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Fighter, columns } from "../../components/dashboard/columns";
 import { DataTable } from "@/components/dashboard/data-table";
 import { FileUploadButton } from "@/components/common/input-file";
+import { BASE_URL } from "@/constants/api";
+import Loading from "@/app/dashboard/loading";
 
-async function getData(): Promise<Fighter[]> {
-  return [
-    {
-      name: "Rakoto Bleu",
-      age: 25,
-      weight: 55,
-      sex: "male",
-      technical_category: "Pupille",
-      fight_category: "-57",
-    },
-    {
-      name: "Rakoto Bleu",
-      age: 24,
-      weight: 56,
-      sex: "male",
-      technical_category: "Junior",
-      fight_category: "-57",
-    },
-    {
-      name: "Rakoto Bleu",
-      age: 23,
-      weight: 57,
-      sex: "male",
-      technical_category: "Senior",
-      fight_category: "-63",
-    },
-  ];
-}
+export default function Page() {
+  const [data, setData] = useState<Fighter[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function Page() {
-  const data = await getData();
+  // Fonction pour récupérer les données
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${BASE_URL}/fighters/`);
+      if (!response.ok) {
+        throw new Error(`Erreur ${response.status}: ${response.statusText}`);
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      setError("Impossible de charger les données.");
+      console.error("Erreur lors du fetch :", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Charger les données au montage
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-end space-x-2 sm:justify-start">
-        <FileUploadButton/>
-        <Button>Export</Button>
+        <FileUploadButton onUploadSuccess={fetchData} />
       </div>
       <div className="mt-2">
-        <DataTable columns={columns} data={data} />
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : (
+          <DataTable columns={columns} data={data} />
+        )}
       </div>
     </div>
   );
